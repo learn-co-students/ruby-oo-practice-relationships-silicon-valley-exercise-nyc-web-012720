@@ -32,7 +32,7 @@ attr_accessor :name, :total_worth
     end
 
     def portfolio
-       funded_startups = self.funding_rounds.map { |vc| vc.startup }
+       funded_startups = self.funding_rounds.map { |fr| fr.startup }
        funded_startups.uniq
     end
 

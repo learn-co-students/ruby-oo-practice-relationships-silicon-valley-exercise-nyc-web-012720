@@ -37,6 +37,10 @@ class VentureCapitalist
         end 
     end 
 
+    def baller?
+        self.total_worth > 1000000000
+    end 
+
 # # #   C L A S S   M E T H O D S   # # #
 
     def self.all
@@ -44,17 +48,22 @@ class VentureCapitalist
     end 
 
     def self.tres_commas_club
-        @@all_capitalists.select do |capatalist|
-            capatalist.total_worth > 1000000000
-        end
+        all.select do |capitalist|
+            capitalist.baller?
+        end 
+        # all.select(&:baller?)
     end 
 
-# # #   H E L P E R   M E T H O D S   # # #
+# # #   P R I V A T E   M E T H O D S   # # #
+
+    private
 
     def funding_rounds
         FundingRound.all.select do |round|
             round.venture_capitalist == self
         end 
     end 
+
+    
 
 end

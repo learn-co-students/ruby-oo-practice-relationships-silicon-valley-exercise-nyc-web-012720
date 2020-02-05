@@ -1,17 +1,14 @@
 class Startup
 
-    attr_accessor :domain, :name
-    attr_reader :founder
+    attr_reader :founder, :domain, :name
 
     @@all_startups = []
-    @@all_domains = []
 
     def initialize(name, founder, domain)
         @name = name
         @founder = founder
         @domain = domain
         @@all_startups << self
-        @@all_domains << @domain
     end 
 
 # # #   I N S T A N C E   M E T H O D S   # # #
@@ -27,22 +24,22 @@ class Startup
     end 
 
     def num_funding_rounds
-        self.funding_rounds.count
+        funding_rounds.count
     end 
 
     def total_funds
-        self.funding_rounds.reduce(0) do |acc, round|
+        funding_rounds.reduce(0) do |acc, round|
             acc + round.investment
         end 
     end 
 
     def investors 
-        self.venture_capitalists.name
+        venture_capitalists.name
     end 
 
     def big_investors
-        self.venture_capitalists.select do |capitalist|
-            capitalist.total_worth > 1000000000
+        venture_capitalists.select do |capitalist|
+            capitalist.baller?
         end
     end 
 
@@ -53,16 +50,22 @@ class Startup
     end 
 
     def self.find_by_founder(founder_name)
-        @@all_startups.find do |startup|
+        all.find do |startup|
             startup.founder == founder_name
         end 
     end 
 
     def self.domains
-        @@all_domains 
+        all.map do |startup|
+            startup.domain
+        end 
     end 
 
-# # #   H E L P E R   M E T H O D S   # # #
+# # #   P R I V A T E   M E T H O D S   # # #
+
+    private 
+
+    attr_writer :domain, :name
 
     def venture_capitalists
         FundingRound.all.select do |fund|
@@ -77,5 +80,5 @@ class Startup
             fund.startup == self
         end
     end 
-    
+
 end 

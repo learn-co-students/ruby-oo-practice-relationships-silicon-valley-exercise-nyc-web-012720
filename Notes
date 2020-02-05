@@ -1,0 +1,36 @@
+[] Create Specs
+[] Define ONE class file
+[] Test that ONE class file
+[] Create multiple variables that equal to a new instace of that file
+[] Test on binding.pry
+    [] Does the variable return an instance?
+    [] Can you access an instance method?
+    [] Does the .all array work?
+[] If successful, copy and paste & modify for the other class files
+[] Repeat lines 2-8 for the other two class files
+[] Define relationships between all three classes
+[] Test again in binding.pry
+
+Startup -< FundingRound >- VentureCapitalists
+
+Startup:
+    [x] #name
+    [x] #founder
+    [x] #domain
+    [x] #pivot
+    [x] .all
+    [x] .find_by_founder
+    [x] .domains
+
+VentureCapitalists:
+    [x] #name
+    [x] #total_worth
+    [x] .all
+    [x] .tres_commas_club
+
+FundingRound:
+    [x] #startup
+    [x] #venture_capitalist
+    [x] #type
+    [x] #investment
+    [x] .all

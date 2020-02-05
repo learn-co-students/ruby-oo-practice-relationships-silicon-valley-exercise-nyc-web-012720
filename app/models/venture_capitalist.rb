@@ -17,19 +17,19 @@ class VentureCapitalist
     end 
 
     def portfolio
-        self.funding_rounds.map do |round|
+        funding_rounds.map do |round|
             round.startup
         end 
     end 
 
     def biggest_investment
-        self.funding_rounds.max_by do |round|
+        funding_rounds.max_by do |round|
             round.investment
         end 
     end 
 
     def invested(domain)
-        rounds = self.funding_rounds.select do |round|
+        rounds = funding_rounds.select do |round|
             round.startup.domain == domain
         end 
         rounds.reduce(0) do |acc, venture| 
